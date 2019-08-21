@@ -7,6 +7,7 @@
 [![Maven Central](https://img.shields.io/maven-central/v/org.dromara/soul.svg?label=maven%20central)](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.dromara%22%20AND%soul)
 [![QQ群](https://img.shields.io/badge/chat-on%20QQ-ff69b4.svg?style=flat-square)](https://shang.qq.com/wpa/qunwpa?idkey=03bbb6f74b3257989316c0a8cf07cec117314dbdfe4fa7a20870b298b7db2c3b)
 
+
 ### Reactive gateway based on webflux
 
 # Architecture
@@ -74,17 +75,17 @@
   The selector and the rule match only once, and the match is returned. So the coarsest granularity should be sorted last.
    
   
-# Data Caching 
+# Data Caching  & Data Sync
  
-  All data is cached HashMap in the JVM So it's very fast.
+  All data is cached ConcurrentHashMap in the JVM So it's very fast.
   
   When the user is managing changes in the background,
   
-  Soul dynamically updates the cache by listening to the zookeeper node.
+  Soul dynamically updates the cache by listening to the zookeeper node, websocket push,http longPull.
   
-  This solution might rely on zookeeper,It may be replaced in the future [issues](https://github.com/Dromara/soul/issues/35)
+  ![Data Sync](https://bestkobe.gitee.io/images/soul/soul-config-processor.png?_t=201908032316)
   
-  Node design for zookeeper [zookeeper-node](https://dromara.org/website/zh-cn/docs/soul/config.html)
+  ![Sync Flow](https://bestkobe.gitee.io/images/soul/config-strage-processor.png?_t=201908032339)
  
 # Quick Start
  * get `soul-admin.jar`
@@ -95,8 +96,8 @@
 
 * start `soul-admin.jar`
 ```java
-java -jar soul-admin.jar -Dspring.datasource.url="your mysql url"  
--Dspring.datasource.username='you username'  -Dspring.datasource.password='you password'
+java -jar soul-admin.jar --spring.datasource.url="your mysql url"  
+--spring.datasource.username='you username'  --spring.datasource.password='you password'
 ```
 * visit : http://localhost:8887/index.html  username:admin  password :123456
 
@@ -115,19 +116,17 @@ java -jar soul-admin.jar -Dspring.datasource.url="your mysql url"
 # Prerequisite
  
    * JDK 1.8+
-
-   * Zookeeper
    
    * Mysql
    
-# About
+# About & Document
   
    Soul Has been used in our production environment,Its performance and flexibility allow us to use up very cool.
    
    In double 11, we deployed 6 clusters, which supported a large volume of our business.
    
-   If you want to use it, you can see [more](https://dromara.org/website/zh-cn/docs/soul/soul.html)
-     
+   If you want to use it, you can see [Document](https://dromara.org/website/zh-cn/docs/soul/soul.html)
+        
 # Stargazers over time
 
 [![Stargazers over time](https://starchart.cc/Dromara/soul.svg)](https://starchart.cc/Dromara/soul)
@@ -142,7 +141,9 @@ java -jar soul-admin.jar -Dspring.datasource.url="your mysql url"
 
 * [plugins](http://www.iqiyi.com/w_19s651zyo9.html)
 
-# Support
+# Support  
 
- ![](https://yu199195.github.io/images/soul-qq.png) ![](https://yu199195.github.io/images/public.jpg)
+ [![芋道源码](http://www.iocoder.cn/images/common/erweima.jpg)](http://www.iocoder.cn/?from=soul) ![](https://yu199195.github.io/images/public.jpg)  ![](https://yu199195.github.io/images/soul-qq.png)   [![JetBrains](https://yu199195.github.io/images/jetbrains.svg)](https://www.jetbrains.com/?from=soul)
   
+ 
+ 
